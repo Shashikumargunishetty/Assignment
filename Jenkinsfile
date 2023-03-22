@@ -4,7 +4,7 @@ agent any
 stages{
 	stage('scm'){
 		steps{
-		
+			git credentialsId: 'github_service_account_passwd', url: 'https://github.com/Shashikumargunishetty/Assignment.git'		
 		}
 
 	}
@@ -45,6 +45,17 @@ stages{
 		}
 
 
+	}
+	stage('Input'){
+		steps{
+			input('Do you want to proceed?')
+
+		}
+	}
+	stage('Deploy the code'){
+		steps{
+			sh ''' sh deploy_script.sh '''
+		}
 	}
 
 
